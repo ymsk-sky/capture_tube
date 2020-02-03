@@ -32,18 +32,17 @@ def main():
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow('tube', gray)
+        # 文字認識
+        txt = tool.image_to_string(image=Image.fromarray(gray),
+                                   lang='jpn',
+                                   builder=pyocr.builders.TextBuilder(tesseract_layout=6))
+        print(txt)
+
+        cv2.imshow('tube', frame)
 
         key = cv2.waitKey(fps) & 0xFF
         if key == ord('q'):
             break
-
-    # 文字認識
-    txt = tool.image_to_string(image=Image.fromarray(frame),
-                               lang='jpn',
-                               builder=pyocr.builders.TextBuilder(tesseract_layout=6))
-
-    print(txt)
 
     video.release()
     cv2.destroyAllWindows()
