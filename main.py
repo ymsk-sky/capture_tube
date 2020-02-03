@@ -21,7 +21,9 @@ def main():
         if not ret:
             break
 
-        cv2.imshow('tube', frame)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+        cv2.imshow('tube', gray)
 
         key = cv2.waitKey(fps) & 0xFF
         if key == ord('q'):
