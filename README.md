@@ -7,6 +7,8 @@ YouTubeから動画を引っ張ってきて文字認識を行なう。
 - cv2
 - pafy
 - youtube_dl
+- pyocr
+- PIL
 
 ## tools
 
@@ -17,7 +19,7 @@ YouTubeから動画を引っ張ってきて文字認識を行なう。
 各モジュールをインストール
 
 ```
-pip install cv2 pafy youtube_dl
+pip install cv2 pafy youtube_dl pyocr
 ```
 
 OCRツールをインストール
@@ -26,8 +28,10 @@ OCRツールをインストール
 brew install tesseract
 ```
 
-日本語の解析ができるようにデータをインストール
+多言語の解析ができるようにデータをインストール
 
 ```
 brew install tesseract-lang
+# 使用言語確認
+tesseract --list-langs
 ```
