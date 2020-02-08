@@ -1,0 +1,9 @@
+# gomi
+.DS_Store
+
+# media files
+*.mp3
+*.mp4
+
+# clf
+lbpcascade_animeface.xml
