@@ -5,15 +5,16 @@ import pafy
 import youtube_dl
 
 def main():
-    # Youtubeから動画を読み込む
-    url = 'https://www.youtube.com/watch?v=bojIHQKjCwo'
-    v_pafy = pafy.new(url)
-    play = v_pafy.getbest(preftype="webm")
-    video = cv2.VideoCapture(play.url)
+    src = 'test.mp4'
+    video = cv2.VideoCapture(src)
     if not video.isOpened():
         return
     # fpsを取得
     fps = int(video.get(cv2.CAP_PROP_FPS))
+
+    # 分類器を作成
+    cascade_file = 'lbpcascade_animeface.xml'
+    clf = cv2.CascadeClassifier(cascade_file)
 
     # 1フレームごとに処理を行なう
     while video.isOpened():
@@ -23,9 +24,14 @@ def main():
 
         # グレイスケール→二値化
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        ret, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)
 
-        cv2.imshow('tube', binary)
+        # 検出
+        faces = clf.detectMultiScale(gray)
+        # 描画
+        for x, y, w, h in faces:
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0 ,255), 2)
+
+        cv2.imshow('tube', frame)
 
         key = cv2.waitKey(fps) & 0xFF
         if key == ord('q'):
@@ -33,6 +39,13 @@ def main():
 
     video.release()
     cv2.destroyAllWindows()
+
+
+def dl(url):
+    ydl = youtube_dl.YoutubeDL({'outtmple': '%(id)s%(ext)s', 'format': '137'})
+
+    with ydl:
+        result = ydl.extract_info(url, download=True)
 
 
 if __name__ == '__main__':
