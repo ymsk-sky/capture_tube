@@ -37,7 +37,7 @@ def main():
 
         # グレイスケール→二値化
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        ret, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)
+        ret, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY_INV)
 
         # 文字認識
         txt = tool.image_to_string(image=Image.fromarray(binary),
