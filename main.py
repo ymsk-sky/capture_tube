@@ -15,12 +15,15 @@ def main():
         return
     tool = tools[0]
 
+    """
     # Youtubeから動画を読み込む
     url = 'https://www.youtube.com/watch?v=bojIHQKjCwo'
     v_pafy = pafy.new(url)
     play = v_pafy.getbest(preftype="webm")
     time.sleep(3)
     video = cv2.VideoCapture(play.url)
+    """
+    video = cv2.VideoCapture('test.mp4')
     if not video.isOpened():
         return
     # fpsを取得
@@ -43,6 +46,7 @@ def main():
         print(txt)
 
         cv2.imshow('tube', frame)
+        # cv2.imshow('tube', binary)
 
         key = cv2.waitKey(fps) & 0xFF
         if key == ord('q'):
