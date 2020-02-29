@@ -15,7 +15,7 @@ while video.isOpened():
         break
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    ret, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY_INV)
+    ret, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)
 
     # 境界検出
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
