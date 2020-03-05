@@ -6,4 +6,4 @@
 *.mp4
 
 # clf
-lbpcascade_animeface.xml
+*.xml
