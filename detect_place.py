@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+ref: https://qiita.com/ChibaDai/items/875d767d260151974c89
+"""
 
 import cv2
 import numpy as np
@@ -22,5 +25,4 @@ closing = cv2.morphologyEx(th2, cv2.MORPH_CLOSE, kernel)
 cv2.imshow('test', closing)
 
 cv2.waitKey(0)
-
 cv2.destroyAllWindows()
